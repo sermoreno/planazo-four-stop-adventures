@@ -10,11 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CuentaRouteImport } from './routes/cuenta'
+import { Route as MisPlanesRouteImport } from './routes/mis-planes'
+import { Route as PShare_slugRouteImport } from './routes/p.$share_slug'
+import { Route as PlanIdRouteImport } from './routes/plan.$id'
 import { Route as PlanNuevoRouteImport } from './routes/plan.nuevo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CuentaRoute = CuentaRouteImport.update({
+  id: '/cuenta',
+  path: '/cuenta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MisPlanesRoute = MisPlanesRouteImport.update({
+  id: '/mis-planes',
+  path: '/mis-planes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PShare_slugRoute = PShare_slugRouteImport.update({
+  id: '/p/$share_slug',
+  path: '/p/$share_slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanIdRoute = PlanIdRouteImport.update({
+  id: '/plan/$id',
+  path: '/plan/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlanNuevoRoute = PlanNuevoRouteImport.update({
@@ -25,27 +49,62 @@ const PlanNuevoRoute = PlanNuevoRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cuenta': typeof CuentaRoute
+  '/mis-planes': typeof MisPlanesRoute
+  '/p/$share_slug': typeof PShare_slugRoute
+  '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cuenta': typeof CuentaRoute
+  '/mis-planes': typeof MisPlanesRoute
+  '/p/$share_slug': typeof PShare_slugRoute
+  '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cuenta': typeof CuentaRoute
+  '/mis-planes': typeof MisPlanesRoute
+  '/p/$share_slug': typeof PShare_slugRoute
+  '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/plan/nuevo'
+  fullPaths:
+    | '/'
+    | '/cuenta'
+    | '/mis-planes'
+    | '/p/$share_slug'
+    | '/plan/$id'
+    | '/plan/nuevo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/plan/nuevo'
-  id: '__root__' | '/' | '/plan/nuevo'
+  to:
+    | '/'
+    | '/cuenta'
+    | '/mis-planes'
+    | '/p/$share_slug'
+    | '/plan/$id'
+    | '/plan/nuevo'
+  id:
+    | '__root__'
+    | '/'
+    | '/cuenta'
+    | '/mis-planes'
+    | '/p/$share_slug'
+    | '/plan/$id'
+    | '/plan/nuevo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CuentaRoute: typeof CuentaRoute
+  MisPlanesRoute: typeof MisPlanesRoute
+  PShare_slugRoute: typeof PShare_slugRoute
+  PlanIdRoute: typeof PlanIdRoute
   PlanNuevoRoute: typeof PlanNuevoRoute
 }
 
@@ -56,6 +115,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cuenta': {
+      id: '/cuenta'
+      path: '/cuenta'
+      fullPath: '/cuenta'
+      preLoaderRoute: typeof CuentaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mis-planes': {
+      id: '/mis-planes'
+      path: '/mis-planes'
+      fullPath: '/mis-planes'
+      preLoaderRoute: typeof MisPlanesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/p/$share_slug': {
+      id: '/p/$share_slug'
+      path: '/p/$share_slug'
+      fullPath: '/p/$share_slug'
+      preLoaderRoute: typeof PShare_slugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan/$id': {
+      id: '/plan/$id'
+      path: '/plan/$id'
+      fullPath: '/plan/$id'
+      preLoaderRoute: typeof PlanIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/plan/nuevo': {
@@ -70,6 +157,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CuentaRoute: CuentaRoute,
+  MisPlanesRoute: MisPlanesRoute,
+  PShare_slugRoute: PShare_slugRoute,
+  PlanIdRoute: PlanIdRoute,
   PlanNuevoRoute: PlanNuevoRoute,
 }
 export const routeTree = rootRouteImport
