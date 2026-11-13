@@ -1,23 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import {createFileRoute,Link} from '@tanstack/react-router';
+import {useState} from 'react';
+import {ArrowRight,ArrowUpRight,MapPin,Sparkles,Leaf,Heart,Utensils,Users,Sun,Footprints,Clock,Wallet,ShieldCheck,Compass} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {Header,Footer} from '@/features/planazo/header';
+import {usePlanazo} from '@/features/planazo/context';
+import madrid from '@/assets/madrid.jpg';import escorial from '@/assets/escorial.jpg';import sierra from '@/assets/sierra.jpg';
+export const Route=createFileRoute('/')({head:()=>({meta:[{title:'Planazo · Tu fin de semana en Madrid'},{name:'description',content:'Descubre zonas de Madrid y crea un plan a tu ritmo, con restaurantes, ocio familiar y trayectos.'},{property:'og:title',content:'Planazo · Tu fin de semana en Madrid'},{property:'og:description',content:'Planes que encajan contigo en la provincia de Madrid.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Home});
+const moods=[{label:'Desconectar',icon:Leaf},{label:'Descubrir algo nuevo',icon:Compass},{label:'Comer rico',icon:Utensils},{label:'Disfrutar en familia',icon:Users},{label:'Un poco de aventura',icon:Sun}];
+function Home(){const {preferences,setPreferences}=usePlanazo();const [mood,setMood]=useState('Desconectar');function choose(label:string){setMood(label);setPreferences({...preferences,mood:label,companions:label==='Disfrutar en familia'?'Familia':preferences.companions,interests:label==='Comer rico'?['gastronomía']:label==='Disfrutar en familia'?['naturaleza','familia','gastronomía']:preferences.interests});}const zones=[{name:'Madrid, sin prisas',zone:'Madrid centro',image:madrid,badge:'Ciudad con mucho que contar',text:'Paseos, rincones con historia y una mesa que merece la pena. Redescubre tu ciudad.',cost:'Desde 0 €',time:'Medio día',icon:Heart},{name:'Respira Sierra',zone:'Sierra de Guadarrama',image:sierra,badge:'Un respiro al aire libre',text:'Naturaleza, pueblos bonitos y vistas para desconectar. Muy cerca, muy diferente.',cost:'Desde 0 €',time:'Un día',icon:Leaf},{name:'Escápate a El Escorial',zone:'El Escorial',image:escorial,badge:'Cultura y buena mesa',text:'Historia entre montañas, jardines para perderse y una sobremesa sin reloj.',cost:'Desde 5 €',time:'Un día',icon:Compass}];return <><Header/><main><section className="hero"><img className="hero-photo" src={madrid} alt="La Gran Vía de Madrid y el edificio Metrópolis al atardecer" width={1920} height={1024}/><div className="page-width hero-content"><div className="eyebrow"><MapPin size={14}/> MADRID Y SU PROVINCIA · CERCA DE TI</div><h1>Planazo<span>.</span><br/>Tu finde, como<br/>te apetece sentirlo.</h1><p>Dinos qué te pide el cuerpo. Nosotros encontramos<br className="hidden sm:block"/> los lugares y el camino para hacerlo realidad.</p><Button asChild size="lg" className="hero-cta"><Link to="/plan/nuevo"><Sparkles/>Encontrar mi planazo<ArrowRight/></Link></Button><div className="hero-note"><ShieldCheck size={14}/> A tu ritmo. A tu presupuesto. Sin complicaciones.</div></div></section><section className="page-width discovery"><div className="section-title-row"><div><h2>¿Qué te apetece este finde?</h2><p className="section-kicker">No necesitas un destino. Solo unas ganas.</p></div><span className="eyebrow text-muted-foreground"><Sparkles size={14}/> Tú eliges el mood</span></div><div className="mood-list">{moods.map(m=><Button key={m.label} variant="ghost" className="mood-chip" data-active={mood===m.label} onClick={()=>choose(m.label)}><m.icon/>{m.label}</Button>)}</div><div className="section-title-row"><div><h2>Un buen plan empieza cerca</h2><p className="section-kicker">Una ciudad, mil formas de disfrutarla. Y mucho más a su alrededor.</p></div><Button asChild variant="link"><Link to="/plan/nuevo">Crear mi ruta<ArrowUpRight/></Link></Button></div><div className="zones-grid">{zones.map(z=><Link to="/plan/nuevo" key={z.name} className="zone-card" onClick={()=>setPreferences({...preferences,zone:z.zone,mood})}><div className="zone-image-wrap"><img src={z.image} width={1024} height={768} loading="lazy" alt={z.name}/><span className="zone-badge"><z.icon size={12}/>{z.badge}</span></div><div className="zone-body"><h3>{z.name}<ArrowUpRight size={19}/></h3><p>{z.text}</p><div className="zone-meta"><span><Wallet/>{z.cost}</span><span><Clock/>{z.time}</span><span><Footprints/>A tu ritmo</span></div></div></Link>)}</div></section><div className="page-width"><div className="trust-band"><span><MapPin/>Solo lugares de Madrid y su provincia</span><span><Wallet/>Tu presupuesto, siempre presente</span><span><Heart/>Más momentos, menos organizar</span></div></div></main><Footer/></>;}

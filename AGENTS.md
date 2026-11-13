@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Planazo architecture
+- Keep app-internal server logic in TanStack server functions; this project deploys to Workers, not Supabase Edge Functions.
+- Keep map imports in a lazy-loaded component behind ClientOnly; Leaflet touches browser APIs at import time.
+- Select itinerary places from the public catalog, then ask the AI only for explanations; catalog prices and constraints remain authoritative.
+- Use OpenStreetMap France HOT raster tiles with Leaflet; the requested CARTO Voyager endpoint returns API-key-required images instead of maps.
+- Keep anonymous drafts in sessionStorage only; signed-in saved plans and public share links live in Cloud with owner policies and slug-only public read RPC.
