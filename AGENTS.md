@@ -35,3 +35,6 @@ use the editor.
 - Select itinerary places from the public catalog, then ask the AI only for explanations; catalog prices and constraints remain authoritative.
 - Use OpenStreetMap France HOT raster tiles with Leaflet; the requested CARTO Voyager endpoint returns API-key-required images instead of maps.
 - Keep anonymous drafts in sessionStorage only; signed-in saved plans and public share links live in Cloud with owner policies and slug-only public read RPC.
+
+- Use the FOSSGIS routed-foot OSRM service for walking geometry and leg durations; the public project-osrm server runs a driving profile.
+- Persist preference snapshots and scheduled durations with saved itineraries so reopening does not replace family settings with defaults.

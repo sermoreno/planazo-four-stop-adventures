@@ -5,5 +5,6 @@
 - [x] Acceso por enlace email, guardar hasta 3 planes y compartir implementados.
 - [x] Verificación móvil y generación/cambio de parada; 7 pruebas pasan.
 - [x] Restaurantes y ocio para familias en Madrid.
-- [ ] Verificar guardar, compartir y el cuarto plan con sesión: no hay usuarios registrados; requiere primer acceso por email.
-- [ ] Validar rutas peatonales reales: el servicio público OSRM no garantiza perfil peatonal; distancias y tiempos se muestran como orientativos.
+- [x] Guardar y reabrir con perfil de prueba verificados; compartir y cuarto plan fuera de esta prueba.
+- [x] Servicio FOSSGIS con perfil peatonal comprobado; tiempos orientativos de 19, 6 y 23 minutos en el plan familiar.
+- [x] Perfil Familia de prueba creado; plan familiar generado, ajustado, guardado y vuelto a abrir.
