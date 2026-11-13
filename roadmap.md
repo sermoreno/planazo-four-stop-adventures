@@ -4,3 +4,4 @@
 - [ ] Preferencias y generación de planes.
 - [ ] Acceso, guardar hasta 3 planes y compartir.
 - [ ] Verificación móvil y flujo principal.
+- [ ] Restaurantes y ocio para familias en Madrid.
