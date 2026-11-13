@@ -1,0 +1,5 @@
+import {z} from 'zod';
+export const WALKING_ENDPOINT='https://routing.openstreetmap.de/routed-foot/route/v1/foot/';
+const responseSchema=z.object({code:z.literal('Ok'),routes:z.array(z.object({distance:z.number().nonnegative(),duration:z.number().nonnegative(),legs:z.array(z.object({distance:z.number().nonnegative(),duration:z.number().nonnegative()})),geometry:z.object({coordinates:z.array(z.tuple([z.number(),z.number()])).min(2)})})).min(1)});
+export function parseWalkingRoute(raw:unknown){const route=responseSchema.parse(raw).routes[0];if(!route)throw new Error('No hay ruta peatonal');return {coordinates:route.geometry.coordinates.map(([lng,lat]):[number,number]=>[lat,lng]),minutes:route.legs.map(l=>Math.ceil(l.duration/60)),meters:route.distance};}
+export async function walkingRoute(points:{lat:number;lng:number}[],signal?:AbortSignal){const response=await fetch(`${WALKING_ENDPOINT}${points.map(p=>`${p.lng},${p.lat}`).join(';')}?overview=full&geometries=geojson`,{signal});if(!response.ok)throw new Error('Ruta peatonal no disponible');return parseWalkingRoute(await response.json());}
