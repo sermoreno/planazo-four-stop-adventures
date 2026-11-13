@@ -1,5 +1,6 @@
 # Planazo
-- [ ] Mostrar horarios oficiales por lugar y temporada; marcar los pendientes de contrastar sin inventar horas.
+- [x] Mostrar horarios y temporadas junto a cada lugar, con fuente y fecha; 16 completos, 4 parciales y 1 calendario variable, verificados en Explorar y Mis planes.
+- [ ] Completar los horarios de los 27 lugares restantes y los 4 parciales: faltan fuentes oficiales con horas contrastables; no publicar horas inventadas.
 - [x] Esquema, perfiles y catálogo de 48 lugares de Madrid.
 - [x] Itinerario editable con mapa y recorrido orientativo.
 - [x] Preferencias y generación de cuatro paradas con motivos de IA.
