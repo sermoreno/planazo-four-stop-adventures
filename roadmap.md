@@ -1,4 +1,5 @@
 # Planazo
+- [ ] Mostrar horarios oficiales por lugar y temporada; marcar los pendientes de contrastar sin inventar horas.
 - [x] Esquema, perfiles y catálogo de 48 lugares de Madrid.
 - [x] Itinerario editable con mapa y recorrido orientativo.
 - [x] Preferencias y generación de cuatro paradas con motivos de IA.
