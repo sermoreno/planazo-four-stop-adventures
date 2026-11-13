@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {MapContainer,TileLayer,Marker,CircleMarker,Tooltip,Polyline,useMap} from 'react-leaflet';
+import {MapContainer,TileLayer,Marker,CircleMarker,Tooltip,Popup,Polyline,useMap} from 'react-leaflet';
 import L from 'leaflet';
 import {PlaceHours} from './place-hours';
 import type {Place,Zone} from './model';
