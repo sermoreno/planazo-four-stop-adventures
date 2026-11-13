@@ -7,3 +7,4 @@
 - [x] Restaurantes y ocio para familias en Madrid.
 - [ ] Verificar guardar, compartir y el cuarto plan con sesión: no hay usuarios registrados; requiere primer acceso por email.
 - [ ] Validar rutas peatonales reales: el servicio público OSRM no garantiza perfil peatonal; distancias y tiempos se muestran como orientativos.
+- [ ] Crear perfil de prueba y generar, comprobar trayectos y guardar un plan con restaurantes y zonas familiares.
