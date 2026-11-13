@@ -14,13 +14,286 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_messages: {
+        Row: {
+          content: string | null
+          created_at: string | null
+          id: string
+          itinerary_id: string | null
+          role: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string | null
+          id?: string
+          itinerary_id?: string | null
+          role?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string | null
+          id?: string
+          itinerary_id?: string | null
+          role?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_itinerary_id_fkey"
+            columns: ["itinerary_id"]
+            isOneToOne: false
+            referencedRelation: "itineraries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      geocode_cache: {
+        Row: {
+          lat: number | null
+          lng: number | null
+          query: string
+          updated_at: string | null
+        }
+        Insert: {
+          lat?: number | null
+          lng?: number | null
+          query: string
+          updated_at?: string | null
+        }
+        Update: {
+          lat?: number | null
+          lng?: number | null
+          query?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      itineraries: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_public: boolean | null
+          plan_date: string | null
+          preference_id: string | null
+          share_slug: string | null
+          status: string | null
+          title: string
+          total_cost: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_public?: boolean | null
+          plan_date?: string | null
+          preference_id?: string | null
+          share_slug?: string | null
+          status?: string | null
+          title: string
+          total_cost?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_public?: boolean | null
+          plan_date?: string | null
+          preference_id?: string | null
+          share_slug?: string | null
+          status?: string | null
+          title?: string
+          total_cost?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "itineraries_preference_id_fkey"
+            columns: ["preference_id"]
+            isOneToOne: false
+            referencedRelation: "preferences"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      itinerary_items: {
+        Row: {
+          end_time: string | null
+          est_cost: number | null
+          id: string
+          itinerary_id: string
+          place_id: string
+          position: number | null
+          reason: string | null
+          start_time: string | null
+          travel_min_from_prev: number | null
+          verify_note: string | null
+        }
+        Insert: {
+          end_time?: string | null
+          est_cost?: number | null
+          id?: string
+          itinerary_id: string
+          place_id: string
+          position?: number | null
+          reason?: string | null
+          start_time?: string | null
+          travel_min_from_prev?: number | null
+          verify_note?: string | null
+        }
+        Update: {
+          end_time?: string | null
+          est_cost?: number | null
+          id?: string
+          itinerary_id?: string
+          place_id?: string
+          position?: number | null
+          reason?: string | null
+          start_time?: string | null
+          travel_min_from_prev?: number | null
+          verify_note?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "itinerary_items_itinerary_id_fkey"
+            columns: ["itinerary_id"]
+            isOneToOne: false
+            referencedRelation: "itineraries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "itinerary_items_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      places: {
+        Row: {
+          address: string | null
+          avg_cost_eur: number
+          avg_duration_min: number | null
+          category: string
+          description: string | null
+          external_url: string | null
+          id: string
+          indoor: boolean | null
+          is_verified: boolean | null
+          lat: number
+          lng: number
+          name: string
+          neighborhood: string
+          opening_hours: Json | null
+          price_level: number | null
+          tags: string[] | null
+        }
+        Insert: {
+          address?: string | null
+          avg_cost_eur?: number
+          avg_duration_min?: number | null
+          category: string
+          description?: string | null
+          external_url?: string | null
+          id?: string
+          indoor?: boolean | null
+          is_verified?: boolean | null
+          lat: number
+          lng: number
+          name: string
+          neighborhood: string
+          opening_hours?: Json | null
+          price_level?: number | null
+          tags?: string[] | null
+        }
+        Update: {
+          address?: string | null
+          avg_cost_eur?: number
+          avg_duration_min?: number | null
+          category?: string
+          description?: string | null
+          external_url?: string | null
+          id?: string
+          indoor?: boolean | null
+          is_verified?: boolean | null
+          lat?: number
+          lng?: number
+          name?: string
+          neighborhood?: string
+          opening_hours?: Json | null
+          price_level?: number | null
+          tags?: string[] | null
+        }
+        Relationships: []
+      }
+      preferences: {
+        Row: {
+          budget_pp: number | null
+          companions: string | null
+          constraints: Json | null
+          created_at: string | null
+          date_range: unknown
+          id: string
+          interests: string[] | null
+          mood_text: string | null
+          pace: string | null
+          user_id: string
+        }
+        Insert: {
+          budget_pp?: number | null
+          companions?: string | null
+          constraints?: Json | null
+          created_at?: string | null
+          date_range?: unknown
+          id?: string
+          interests?: string[] | null
+          mood_text?: string | null
+          pace?: string | null
+          user_id: string
+        }
+        Update: {
+          budget_pp?: number | null
+          companions?: string | null
+          constraints?: Json | null
+          created_at?: string | null
+          date_range?: unknown
+          id?: string
+          interests?: string[] | null
+          mood_text?: string | null
+          pace?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          display_name: string | null
+          home_city: string | null
+          id: string
+          plan_tier: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          display_name?: string | null
+          home_city?: string | null
+          id: string
+          plan_tier?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          display_name?: string | null
+          home_city?: string | null
+          id?: string
+          plan_tier?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      read_shared_plan: { Args: { slug: string }; Returns: Json }
     }
     Enums: {
       [_ in never]: never
