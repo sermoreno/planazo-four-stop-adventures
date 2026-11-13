@@ -74,6 +74,7 @@ export type Database = {
           is_public: boolean | null
           plan_date: string | null
           preference_id: string | null
+          preferences_snapshot: Json | null
           share_slug: string | null
           status: string | null
           title: string
@@ -86,6 +87,7 @@ export type Database = {
           is_public?: boolean | null
           plan_date?: string | null
           preference_id?: string | null
+          preferences_snapshot?: Json | null
           share_slug?: string | null
           status?: string | null
           title: string
@@ -98,6 +100,7 @@ export type Database = {
           is_public?: boolean | null
           plan_date?: string | null
           preference_id?: string | null
+          preferences_snapshot?: Json | null
           share_slug?: string | null
           status?: string | null
           title?: string
@@ -116,6 +119,7 @@ export type Database = {
       }
       itinerary_items: {
         Row: {
+          duration_min: number | null
           end_time: string | null
           est_cost: number | null
           id: string
@@ -128,6 +132,7 @@ export type Database = {
           verify_note: string | null
         }
         Insert: {
+          duration_min?: number | null
           end_time?: string | null
           est_cost?: number | null
           id?: string
@@ -140,6 +145,7 @@ export type Database = {
           verify_note?: string | null
         }
         Update: {
+          duration_min?: number | null
           end_time?: string | null
           est_cost?: number | null
           id?: string

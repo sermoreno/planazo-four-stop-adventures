@@ -8,6 +8,13 @@
       "when": 1794593461491,
       "tag": "0000_planazo_madrid",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794594570073,
+      "tag": "0001_saved_plan_preferences",
+      "breakpoints": true
     }
   ]
 }
