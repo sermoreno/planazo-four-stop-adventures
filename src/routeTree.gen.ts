@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CuentaRouteImport } from './routes/cuenta'
+import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MisPlanesRouteImport } from './routes/mis-planes'
 import { Route as PShare_slugRouteImport } from './routes/p.$share_slug'
 import { Route as PlanIdRouteImport } from './routes/plan.$id'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const CuentaRoute = CuentaRouteImport.update({
   id: '/cuenta',
   path: '/cuenta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplorarRoute = ExplorarRouteImport.update({
+  id: '/explorar',
+  path: '/explorar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MisPlanesRoute = MisPlanesRouteImport.update({
@@ -50,6 +56,7 @@ const PlanNuevoRoute = PlanNuevoRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cuenta': typeof CuentaRoute
+  '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cuenta': typeof CuentaRoute
+  '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cuenta': typeof CuentaRoute
+  '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cuenta'
+    | '/explorar'
     | '/mis-planes'
     | '/p/$share_slug'
     | '/plan/$id'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cuenta'
+    | '/explorar'
     | '/mis-planes'
     | '/p/$share_slug'
     | '/plan/$id'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cuenta'
+    | '/explorar'
     | '/mis-planes'
     | '/p/$share_slug'
     | '/plan/$id'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CuentaRoute: typeof CuentaRoute
+  ExplorarRoute: typeof ExplorarRoute
   MisPlanesRoute: typeof MisPlanesRoute
   PShare_slugRoute: typeof PShare_slugRoute
   PlanIdRoute: typeof PlanIdRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/cuenta'
       fullPath: '/cuenta'
       preLoaderRoute: typeof CuentaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explorar': {
+      id: '/explorar'
+      path: '/explorar'
+      fullPath: '/explorar'
+      preLoaderRoute: typeof ExplorarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mis-planes': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CuentaRoute: CuentaRoute,
+  ExplorarRoute: ExplorarRoute,
   MisPlanesRoute: MisPlanesRoute,
   PShare_slugRoute: PShare_slugRoute,
   PlanIdRoute: PlanIdRoute,
