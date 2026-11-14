@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @import "tw-animate-css";
 @import "leaflet/dist/leaflet.css";
+@import "@lovable.dev/cloud-auth-js/styles.css";
 @source "../src";
 @custom-variant dark (&:is(.dark *));
 @theme inline {
@@ -28,3 +29,5 @@
 .weather-days small,.weather-source{color:var(--muted-foreground);font-size:.75rem}
 .weather-alert{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;background:var(--secondary);border-radius:12px;padding:.6rem .8rem;font-size:.875rem}
 .weather-hours{display:flex;flex-direction:column;gap:.2rem;font-size:.875rem}
+.auth-tabs{display:flex;gap:8px;margin-top:24px}.auth-tabs>*{flex:1}.auth-links{display:flex;flex-wrap:wrap;justify-content:center;margin-top:10px}.auth-links button{font-size:12px;white-space:normal;height:auto}.auth-divider{display:flex;align-items:center;gap:12px;color:var(--muted-foreground);font-size:12px;margin:20px 0}.auth-divider:before,.auth-divider:after{content:'';flex:1;height:1px;background:var(--border)}.social-login{display:grid;gap:10px}.social-login button{width:100%;height:44px}.account-form p[role=alert]{color:var(--destructive)}
+:root{--google-button-bg:#FFFFFF;--google-button-border:#747775;--google-button-text:#1F1F1F}.google-auth-button{background:var(--google-button-bg);border:1px solid var(--google-button-border);color:var(--google-button-text);font-size:14px;font-weight:500;padding:0 12px;gap:10px}.google-auth-button:hover{background:var(--google-button-bg)}.google-auth-button svg{width:18px;height:18px}
