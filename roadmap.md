@@ -1,5 +1,5 @@
 # Planazo
-- [ ] Añadir Precios con Free (3 planes) y Premium (4,99 €/mes), activar Stripe y conectar la suscripción; pendiente de confirmación para activar pagos.
+- [ ] Añadir Precios con Free (3 planes) y Premium (4,99 €/mes), activar Stripe y conectar la suscripción; implementado, falta verificar en navegador el pago de prueba y el cuarto plan Premium.
 - [x] Administración reservada a la cuenta verificada indicada; acceso y menú comprobados, denegación y bloqueo de autoasignación probados con otra cuenta.
 - [x] Registro, acceso y recuperación implementados manteniendo perfiles; permisos RLS reforzados y aislamiento probado con dos cuentas; perfil y cierre de sesión verificados.
 - [ ] Verificar recepción de email de alta/recuperación y acceso completo Google/Lovable: requiere correo real y autorización del proveedor.
