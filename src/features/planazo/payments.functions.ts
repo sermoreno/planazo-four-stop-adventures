@@ -63,7 +63,7 @@ export const createCheckoutSession = createServerFn({ method: 'POST' })
       const stripePrice = prices.data[0];
       if (!stripePrice || stripePrice.type !== 'recurring') return { error: 'No se encontró el precio de Planazo Premium.' };
       const customerId = await resolveOrCreateCustomer(stripe, {
-        email: user?.email ?? undefined,
+        ...(user?.email ? { email: user.email } : {}),
         userId: context.userId,
       });
       const session = await stripe.checkout.sessions.create({
