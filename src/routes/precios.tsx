@@ -12,7 +12,7 @@ import { StripeEmbeddedCheckout } from '@/components/StripeEmbeddedCheckout';
 
 export const Route = createFileRoute('/precios')({
   validateSearch: (search: Record<string, unknown>): { session_id?: string } => ({
-    session_id: typeof search.session_id === 'string' ? search.session_id : undefined,
+    ...(typeof search['session_id'] === 'string' ? { session_id: search['session_id'] } : {}),
   }),
   head: () => ({ meta: [
     { title: 'Precios Free y Premium · Planazo' },
