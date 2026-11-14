@@ -7,6 +7,7 @@ import {DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,Drop
 import {supabase} from '@/integrations/supabase/client';
 import {usePlanazo} from './context';
 import {FREE_LIMIT} from './model';
+import {useSubscription} from './use-subscription';
 
 function UserMenu(){
   const {user,displayName,isAdmin}=usePlanazo();const navigate=useNavigate();const qc=useQueryClient();

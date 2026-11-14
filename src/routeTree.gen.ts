@@ -14,10 +14,12 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CuentaRouteImport } from './routes/cuenta'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MisPlanesRouteImport } from './routes/mis-planes'
+import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PShare_slugRouteImport } from './routes/p.$share_slug'
 import { Route as PlanIdRouteImport } from './routes/plan.$id'
 import { Route as PlanNuevoRouteImport } from './routes/plan.nuevo'
+import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -44,6 +46,11 @@ const MisPlanesRoute = MisPlanesRouteImport.update({
   path: '/mis-planes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PreciosRoute = PreciosRouteImport.update({
+  id: '/precios',
+  path: '/precios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -64,6 +71,12 @@ const PlanNuevoRoute = PlanNuevoRouteImport.update({
   path: '/plan/nuevo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicPaymentsWebhookRoute =
+  ApiPublicPaymentsWebhookRouteImport.update({
+    id: '/api/public/payments/webhook',
+    path: '/api/public/payments/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -71,10 +84,12 @@ export interface FileRoutesByFullPath {
   '/cuenta': typeof CuentaRoute
   '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
+  '/precios': typeof PreciosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,10 +97,12 @@ export interface FileRoutesByTo {
   '/cuenta': typeof CuentaRoute
   '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
+  '/precios': typeof PreciosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,10 +111,12 @@ export interface FileRoutesById {
   '/cuenta': typeof CuentaRoute
   '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
+  '/precios': typeof PreciosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,10 +126,12 @@ export interface FileRouteTypes {
     | '/cuenta'
     | '/explorar'
     | '/mis-planes'
+    | '/precios'
     | '/reset-password'
     | '/p/$share_slug'
     | '/plan/$id'
     | '/plan/nuevo'
+    | '/api/public/payments/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,10 +139,12 @@ export interface FileRouteTypes {
     | '/cuenta'
     | '/explorar'
     | '/mis-planes'
+    | '/precios'
     | '/reset-password'
     | '/p/$share_slug'
     | '/plan/$id'
     | '/plan/nuevo'
+    | '/api/public/payments/webhook'
   id:
     | '__root__'
     | '/'
@@ -129,10 +152,12 @@ export interface FileRouteTypes {
     | '/cuenta'
     | '/explorar'
     | '/mis-planes'
+    | '/precios'
     | '/reset-password'
     | '/p/$share_slug'
     | '/plan/$id'
     | '/plan/nuevo'
+    | '/api/public/payments/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -141,10 +166,12 @@ export interface RootRouteChildren {
   CuentaRoute: typeof CuentaRoute
   ExplorarRoute: typeof ExplorarRoute
   MisPlanesRoute: typeof MisPlanesRoute
+  PreciosRoute: typeof PreciosRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   PShare_slugRoute: typeof PShare_slugRoute
   PlanIdRoute: typeof PlanIdRoute
   PlanNuevoRoute: typeof PlanNuevoRoute
+  ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -184,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MisPlanesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/precios': {
+      id: '/precios'
+      path: '/precios'
+      fullPath: '/precios'
+      preLoaderRoute: typeof PreciosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
@@ -212,6 +246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlanNuevoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/payments/webhook': {
+      id: '/api/public/payments/webhook'
+      path: '/api/public/payments/webhook'
+      fullPath: '/api/public/payments/webhook'
+      preLoaderRoute: typeof ApiPublicPaymentsWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -221,10 +262,12 @@ const rootRouteChildren: RootRouteChildren = {
   CuentaRoute: CuentaRoute,
   ExplorarRoute: ExplorarRoute,
   MisPlanesRoute: MisPlanesRoute,
+  PreciosRoute: PreciosRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   PShare_slugRoute: PShare_slugRoute,
   PlanIdRoute: PlanIdRoute,
   PlanNuevoRoute: PlanNuevoRoute,
+  ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
