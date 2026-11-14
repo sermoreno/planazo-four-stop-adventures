@@ -18,7 +18,7 @@ function UserMenu(){
   <DropdownMenuContent align="end" className="w-64"><DropdownMenuLabel><div className="font-bold">Hola, {displayName}</div><div className="text-xs font-normal text-muted-foreground break-all">{user?.email}</div></DropdownMenuLabel><DropdownMenuSeparator/>
   <DropdownMenuItem asChild><Link to="/cuenta"><UserRound/>Mi cuenta</Link></DropdownMenuItem>
   {isAdmin&&<DropdownMenuItem asChild><Link to="/admin"><ShieldCheck/>Administración</Link></DropdownMenuItem>}
-  <DropdownMenuItem asChild><Link to="/mis-planes"><Bookmark/>Mis planes<span className="ml-auto text-xs text-muted-foreground">{count.data??'–'} de {FREE_LIMIT}</span></Link></DropdownMenuItem>
+  <DropdownMenuItem asChild><Link to="/mis-planes"><Bookmark/>Mis planes<span className="ml-auto text-xs text-muted-foreground">{isPremium?'Premium':<>{count.data??'–'} de {FREE_LIMIT}</>}</span></Link></DropdownMenuItem>
   <DropdownMenuItem asChild><Link to="/plan/nuevo"><Plus/>Crear plan</Link></DropdownMenuItem><DropdownMenuSeparator/>
   <DropdownMenuItem onSelect={()=>void signOut()}><LogOut/>Cerrar sesión</DropdownMenuItem></DropdownMenuContent></DropdownMenu>;
 }
