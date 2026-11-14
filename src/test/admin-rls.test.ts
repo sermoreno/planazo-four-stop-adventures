@@ -6,12 +6,12 @@ function client(file:string){
   const session=JSON.parse(readFileSync(file,'utf8'));
   const url=process.env['SUPABASE_URL'];const key=process.env['SUPABASE_PUBLISHABLE_KEY'];
   if(!url||!key)throw new Error('Cloud configuration required');
-  return {id:session.user_id,client:createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false},global:{fetch:(input,init)=>{const headers=new Headers(init?.headers);headers.set('apikey',key);headers.set('Authorization',`Bearer ${session.session.access_token}`);return fetch(input,{...init,headers});}}})};
+  return {id:session.user_id,token:session.session.access_token,client:createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false,storageKey:`admin-test-${session.user_id}`},global:{fetch:(input,init)=>{const headers=new Headers(init?.headers);headers.set('apikey',key);headers.set('Authorization',`Bearer ${session.session.access_token}`);return fetch(input,{...init,headers});}}})};
 }
 describe.skipIf(!enabled)('Restricted administrator RLS',()=>{
   it('grants admin to the verified sermoreno@gmail.com account',async()=>{
-    const {client:admin,id}=client('/tmp/browser/admin/admin-session.json');
-    const user=await admin.auth.getUser();expect(user.data.user?.email).toBe('sermoreno@gmail.com');expect(user.data.user?.email_confirmed_at).toBeTruthy();
+    const {client:admin,id,token}=client('/tmp/browser/admin/admin-session.json');
+    const user=await admin.auth.getUser(token);expect(user.error).toBeNull();expect(user.data.user?.email).toBe('sermoreno@gmail.com');expect(user.data.user?.email_confirmed_at).toBeTruthy();
     const role=await admin.rpc('has_role',{_user_id:id,_role:'admin'});expect(role.error).toBeNull();expect(role.data).toBe(true);
   });
   it('denies admin to another account and prevents self-promotion',async()=>{
