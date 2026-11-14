@@ -72,6 +72,7 @@ export const createCheckoutSession = createServerFn({ method: 'POST' })
         ui_mode: 'embedded_page',
         return_url: data.returnUrl,
         customer: customerId,
+        customer_update: { address: 'auto' },
         automatic_tax: { enabled: true },
         metadata: { userId: context.userId, managed_payments: 'false' },
         subscription_data: { metadata: { userId: context.userId } },
