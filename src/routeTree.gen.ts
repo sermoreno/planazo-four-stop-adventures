@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CuentaRouteImport } from './routes/cuenta'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MisPlanesRouteImport } from './routes/mis-planes'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PShare_slugRouteImport } from './routes/p.$share_slug'
 import { Route as PlanIdRouteImport } from './routes/plan.$id'
 import { Route as PlanNuevoRouteImport } from './routes/plan.nuevo'
@@ -37,6 +38,11 @@ const MisPlanesRoute = MisPlanesRouteImport.update({
   path: '/mis-planes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PShare_slugRoute = PShare_slugRouteImport.update({
   id: '/p/$share_slug',
   path: '/p/$share_slug',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/cuenta': typeof CuentaRoute
   '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/cuenta': typeof CuentaRoute
   '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/cuenta': typeof CuentaRoute
   '/explorar': typeof ExplorarRoute
   '/mis-planes': typeof MisPlanesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/p/$share_slug': typeof PShare_slugRoute
   '/plan/$id': typeof PlanIdRoute
   '/plan/nuevo': typeof PlanNuevoRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/cuenta'
     | '/explorar'
     | '/mis-planes'
+    | '/reset-password'
     | '/p/$share_slug'
     | '/plan/$id'
     | '/plan/nuevo'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/cuenta'
     | '/explorar'
     | '/mis-planes'
+    | '/reset-password'
     | '/p/$share_slug'
     | '/plan/$id'
     | '/plan/nuevo'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/cuenta'
     | '/explorar'
     | '/mis-planes'
+    | '/reset-password'
     | '/p/$share_slug'
     | '/plan/$id'
     | '/plan/nuevo'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   CuentaRoute: typeof CuentaRoute
   ExplorarRoute: typeof ExplorarRoute
   MisPlanesRoute: typeof MisPlanesRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   PShare_slugRoute: typeof PShare_slugRoute
   PlanIdRoute: typeof PlanIdRoute
   PlanNuevoRoute: typeof PlanNuevoRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MisPlanesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/p/$share_slug': {
       id: '/p/$share_slug'
       path: '/p/$share_slug'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   CuentaRoute: CuentaRoute,
   ExplorarRoute: ExplorarRoute,
   MisPlanesRoute: MisPlanesRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   PShare_slugRoute: PShare_slugRoute,
   PlanIdRoute: PlanIdRoute,
   PlanNuevoRoute: PlanNuevoRoute,
