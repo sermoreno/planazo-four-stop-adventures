@@ -11,7 +11,7 @@ import {authMessage,validPassword} from '@/features/planazo/auth-rules';
 import {toast} from 'sonner';
 export const Route=createFileRoute('/cuenta')({head:()=>({meta:[{title:'Tu cuenta · Planazo'},{name:'description',content:'Crea tu cuenta, entra y guarda tus planes de Madrid.'},{property:'og:title',content:'Tu cuenta · Planazo'},{property:'og:description',content:'Tu perfil y tus próximos fines de semana en Madrid.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Account});
 function Account(){
-  const {user,displayName}=usePlanazo();const navigate=useNavigate();const queryClient=useQueryClient();
+  const {user,displayName,isAdmin}=usePlanazo();const navigate=useNavigate();const queryClient=useQueryClient();
   const [mode,setMode]=useState<'login'|'signup'|'magic'|'forgot'>('login');
   const [email,setEmail]=useState('');const [password,setPassword]=useState('');const [name,setName]=useState('');
   const [sent,setSent]=useState(false);const [busy,setBusy]=useState(false);const [error,setError]=useState('');
