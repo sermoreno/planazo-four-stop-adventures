@@ -1,4 +1,5 @@
 # Planazo
+- [ ] Restringir administración a la cuenta verificada indicada y comprobar denegación a otros usuarios.
 - [x] Registro, acceso y recuperación implementados manteniendo perfiles; permisos RLS reforzados y aislamiento probado con dos cuentas; perfil y cierre de sesión verificados.
 - [ ] Verificar recepción de email de alta/recuperación y acceso completo Google/Lovable: requiere correo real y autorización del proveedor.
 - [x] Mostrar horarios y temporadas junto a cada lugar, con fuente y fecha; 16 completos, 4 parciales y 1 calendario variable, verificados en Explorar y Mis planes.
