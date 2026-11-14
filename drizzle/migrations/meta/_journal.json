@@ -15,6 +15,13 @@
       "when": 1794594570073,
       "tag": "0001_saved_plan_preferences",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794652244917,
+      "tag": "0002_harden_user_access",
+      "breakpoints": true
     }
   ]
 }

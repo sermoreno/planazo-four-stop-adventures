@@ -1,0 +1,15 @@
+REVOKE ALL ON public.profiles, public.preferences, public.itineraries, public.itinerary_items, public.chat_messages, public.geocode_cache, public.places FROM anon, authenticated;
+GRANT SELECT ON public.profiles TO authenticated;
+GRANT UPDATE(display_name,home_city) ON public.profiles TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.preferences, public.itineraries, public.itinerary_items, public.chat_messages TO authenticated;
+GRANT SELECT ON public.places TO anon, authenticated;
+GRANT ALL ON public.profiles, public.preferences, public.itineraries, public.itinerary_items, public.chat_messages, public.geocode_cache, public.places TO service_role;
+REVOKE ALL ON FUNCTION public.new_profile(), public.limit_saved_plans() FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.new_profile(), public.limit_saved_plans() TO service_role;
+REVOKE ALL ON FUNCTION public.read_shared_plan(text) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.read_shared_plan(text) TO anon, authenticated;
+CREATE POLICY own_preference_link ON public.itineraries AS RESTRICTIVE FOR ALL TO authenticated USING (true) WITH CHECK (preference_id IS NULL OR EXISTS (SELECT 1 FROM public.preferences p WHERE p.id=preference_id AND p.user_id=auth.uid()));
+CREATE INDEX IF NOT EXISTS itineraries_user_id_idx ON public.itineraries(user_id);
+CREATE INDEX IF NOT EXISTS preferences_user_id_idx ON public.preferences(user_id);
+CREATE INDEX IF NOT EXISTS itinerary_items_itinerary_id_idx ON public.itinerary_items(itinerary_id);
+CREATE INDEX IF NOT EXISTS chat_messages_itinerary_id_idx ON public.chat_messages(itinerary_id);

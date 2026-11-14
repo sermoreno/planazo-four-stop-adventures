@@ -1,4 +1,5 @@
 # Planazo
+- [ ] Completar registro, acceso y recuperación de usuarios manteniendo perfiles; revisar y probar aislamiento RLS.
 - [x] Mostrar horarios y temporadas junto a cada lugar, con fuente y fecha; 16 completos, 4 parciales y 1 calendario variable, verificados en Explorar y Mis planes.
 - [ ] Completar los horarios de los 27 lugares restantes y los 4 parciales: faltan fuentes oficiales con horas contrastables; no publicar horas inventadas.
 - [x] Previsión del tiempo (Open-Meteo) en Nuevo plan y en cada plan.

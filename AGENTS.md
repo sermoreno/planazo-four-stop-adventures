@@ -40,3 +40,5 @@ use the editor.
 - Persist preference snapshots and scheduled durations with saved itineraries so reopening does not replace family settings with defaults.
 - Store sourced hours and seasonal periods in places.opening_hours.published; use the shared PlaceHours view everywhere and never label legacy demo hours as verified, because source provenance must survive saved and shared plans.
 - Weather comes from Open-Meteo in the browser (keyless) and only suggests adjustments; it never blocks plan generation.
+- Keep one auth-state listener in PlanazoProvider, clear private UI/cache on identity changes, and use public account/recovery pages so email and OAuth callbacks can hydrate sessions.
+- Restrict profile edits to display fields through column grants; never expose plan-tier writes, and validate ownership of linked preferences with restrictive RLS.
