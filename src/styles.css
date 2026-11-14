@@ -21,3 +21,10 @@
 .saved-map{margin:14px 0}.saved-map .plan-map{height:240px;border-radius:12px}.saved-stops{margin:10px 0 0;padding-left:20px;font-size:12px;color:var(--muted-foreground);line-height:1.7}
 .explore-list li>div{min-width:0;flex:1}.explore-list li div[aria-label^="Horarios"] div{display:block}.explore-list li div[aria-label^="Horarios"]>div:first-child{display:flex;flex-direction:row;justify-content:flex-start}.explore-list li>button{flex-shrink:0}.explore-list li div[aria-label^="Horarios"]{overflow-wrap:anywhere}
 @media(max-width:600px){.explore-list li{flex-direction:column;align-items:stretch}.explore-list li>button{align-self:flex-end}.header-inner nav{gap:9px}.header-inner{gap:8px}.header-inner .wordmark{font-size:23px}}
+
+.weather-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1rem;margin:1rem 0;display:flex;flex-direction:column;gap:.6rem}
+.weather-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem}
+.weather-days div{display:flex;flex-direction:column;gap:.15rem}
+.weather-days small,.weather-source{color:var(--muted-foreground);font-size:.75rem}
+.weather-alert{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;background:var(--secondary);border-radius:12px;padding:.6rem .8rem;font-size:.875rem}
+.weather-hours{display:flex;flex-direction:column;gap:.2rem;font-size:.875rem}
