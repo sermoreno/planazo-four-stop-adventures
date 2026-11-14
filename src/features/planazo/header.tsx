@@ -10,7 +10,7 @@ import {FREE_LIMIT} from './model';
 import {useSubscription} from './use-subscription';
 
 function UserMenu(){
-  const {user,displayName,isAdmin}=usePlanazo();const navigate=useNavigate();const qc=useQueryClient();
+  const {user,displayName,isAdmin}=usePlanazo();const {isPremium}=useSubscription();const navigate=useNavigate();const qc=useQueryClient();
   const count=useQuery({queryKey:['plan-count',user?.id],enabled:!!user,queryFn:async()=>{if(!user)return 0;const {count}=await supabase.from('itineraries').select('id',{count:'exact',head:true}).eq('user_id',user.id);return count??0;}});
   async function signOut(){await qc.cancelQueries();qc.clear();const {error}=await supabase.auth.signOut();if(error){toast.error('No se pudo cerrar sesión.');return;}toast.success('Sesión cerrada.');await navigate({to:'/'});}
   const initial=(displayName[0]??'?').toUpperCase();
