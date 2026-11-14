@@ -39,3 +39,4 @@ use the editor.
 - Use the FOSSGIS routed-foot OSRM service for walking geometry and leg durations; the public project-osrm server runs a driving profile.
 - Persist preference snapshots and scheduled durations with saved itineraries so reopening does not replace family settings with defaults.
 - Store sourced hours and seasonal periods in places.opening_hours.published; use the shared PlaceHours view everywhere and never label legacy demo hours as verified, because source provenance must survive saved and shared plans.
+- Weather comes from Open-Meteo in the browser (keyless) and only suggests adjustments; it never blocks plan generation.
