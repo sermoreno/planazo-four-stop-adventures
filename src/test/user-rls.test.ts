@@ -8,7 +8,7 @@ function clients(){
   const url=process.env['SUPABASE_URL'];const key=process.env['SUPABASE_PUBLISHABLE_KEY'];
   if(!url||!key)throw new Error('Cloud configuration required');
   const client=(token?:string)=>createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false,storageKey:`rls-test-${Math.random()}`},global:{fetch:(input,init)=>{const h=new Headers(init?.headers);h.set('apikey',key);if(token)h.set('Authorization',`Bearer ${token}`);else h.delete('Authorization');return fetch(input,{...init,headers:h});}}});
-  return {a:client(owner.session.access_token),b:client(other.session.access_token),anon:client(),owner:owner.user_id};
+  return {a:client(owner.session.access_token),b:client(other.session.access_token),anon:client(),owner:owner.user_id,other:other.user_id};
 }
 describe.skipIf(!enabled)('Live user RLS using two authorized sessions',()=>{
   it('owner reads existing private plans, another user cannot read them',async()=>{
@@ -31,9 +31,9 @@ describe.skipIf(!enabled)('Live user RLS using two authorized sessions',()=>{
   it('anonymous access cannot read private data but can read the catalog',async()=>{const {anon}=clients();for(const table of ['profiles','preferences','itineraries','itinerary_items','chat_messages','geocode_cache']){const result=await anon.from(table).select('*').limit(1);expect(result.error?.code).toBe('42501');}const catalog=await anon.from('places').select('id').limit(1);expect(catalog.error).toBeNull();expect(catalog.data?.length).toBe(1);});
   it('trigger functions cannot be invoked by visitors',async()=>{const {anon}=clients();for(const fn of ['new_profile','limit_saved_plans']){const result=await anon.rpc(fn);expect(result.error).toBeTruthy();}});
   it('another user cannot link plans to owner preferences',async()=>{
-    const {a,b}=clients();const owner=await a.auth.getUser();const other=await b.auth.getUser();expect(owner.error).toBeNull();expect(other.error).toBeNull();
-    const pref=await a.from('preferences').insert({user_id:owner.data.user?.id,companions:'familia'}).select('id').single();expect(pref.error).toBeNull();
-    try{const linked=await b.from('itineraries').insert({user_id:other.data.user?.id,title:'Prueba enlace denegado',preference_id:pref.data?.id}).select('id');
+    const {a,b,owner,other}=clients();
+    const pref=await a.from('preferences').insert({user_id:owner,companions:'familia'}).select('id').single();expect(pref.error).toBeNull();
+    try{const linked=await b.from('itineraries').insert({user_id:other,title:'Prueba enlace denegado',preference_id:pref.data?.id}).select('id');
       if(linked.data?.length)await b.from('itineraries').delete().eq('id',linked.data[0]?.id);
       expect(linked.error?.code).toBe('42501');
     }finally{const cleanup=await a.from('preferences').delete().eq('id',pref.data?.id);expect(cleanup.error).toBeNull();}
