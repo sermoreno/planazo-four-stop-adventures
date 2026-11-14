@@ -43,3 +43,4 @@ use the editor.
 - Keep one auth-state listener in PlanazoProvider, clear private UI/cache on identity changes, and use public account/recovery pages so email and OAuth callbacks can hydrate sessions.
 - Restrict profile edits to display fields through column grants; never expose plan-tier writes, and validate ownership of linked preferences with restrictive RLS.
 - Store administrator roles separately in user_roles, synchronize only verified designated accounts, and validate has_role with the caller's authenticated client inside every admin server handler; profile edits must never grant privileges.
+- Use built-in Stripe embedded checkout for Premium, persist subscription events through the signed public webhook, and filter every subscription read by the current sandbox/live environment; paid plan limits must also be enforced server-side.
